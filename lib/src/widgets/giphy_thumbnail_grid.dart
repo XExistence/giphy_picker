@@ -8,15 +8,17 @@ import 'package:giphy_picker/src/widgets/giphy_thumbnail.dart';
 class GiphyThumbnailGrid extends StatelessWidget {
   final GiphyRepository repo;
   final ScrollController scrollController;
+  final Color backgroundColor;
+  final Brightness brightness;
 
   const GiphyThumbnailGrid(
-      {Key key, @required this.repo, this.scrollController})
+      {Key key, @required this.repo, this.scrollController,this.backgroundColor,this.brightness})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(1),
         controller: scrollController,
         itemCount: repo.totalCount,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
@@ -32,6 +34,8 @@ class GiphyThumbnailGrid extends StatelessWidget {
                     builder: (BuildContext context) => GiphyPreviewPage(
                       gif: gif,
                       onSelected: giphy.onSelected,
+                      color: backgroundColor,
+                      brightness: brightness,
                     ),
                   ),
                 );
@@ -44,8 +48,8 @@ class GiphyThumbnailGrid extends StatelessWidget {
                 MediaQuery.of(context).orientation == Orientation.portrait
                     ? 2
                     : 3,
-            childAspectRatio: 1.6,
-            crossAxisSpacing: 5,
-            mainAxisSpacing: 5));
+            childAspectRatio: 1,
+            crossAxisSpacing: 1,
+            mainAxisSpacing: 1));
   }
 }

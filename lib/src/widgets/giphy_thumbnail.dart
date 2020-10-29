@@ -37,7 +37,9 @@ class _GiphyThumbnailState extends State<GiphyThumbnail> {
       future: _loadPreview,
       builder: (BuildContext context, AsyncSnapshot<Uint8List> snapshot) {
         if (!snapshot.hasData) {
-          return widget.placeholder ?? Container(color: Colors.grey.shade200);
+          return widget.placeholder ?? Container(
+            child: Center(child: CircularProgressIndicator(),),
+          );
         }
         return Image.memory(snapshot.data, fit: BoxFit.cover);
       });

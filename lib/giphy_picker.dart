@@ -22,6 +22,9 @@ class GiphyPicker {
     ErrorListener onError,
     bool showPreviewPage = true,
     String searchText = 'Search GIPHY',
+    Color color,
+    Color backgroundColor,
+    Brightness brightness
   }) async {
     GiphyGif result;
 
@@ -29,7 +32,7 @@ class GiphyPicker {
         context,
         MaterialPageRoute(
             builder: (BuildContext context) => GiphyContext(
-                  child: GiphySearchPage(),
+                  child: GiphySearchPage(color: color,brightness: brightness,backgroundColor: backgroundColor,),
                   apiKey: apiKey,
                   rating: rating,
                   language: lang,
