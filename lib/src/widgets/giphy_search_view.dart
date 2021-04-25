@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:giphy_picker/src/model/giphy_repository.dart';
+import 'package:giphy_picker/src/utils/debouncer.dart';
 import 'package:giphy_picker/src/widgets/giphy_context.dart';
 import 'package:giphy_picker/src/widgets/giphy_thumbnail_grid.dart';
 import 'package:giphy_picker/src/widgets/logo.dart';
@@ -33,8 +34,11 @@ class _GiphySearchViewState extends State<GiphySearchView> {
   @override
   void initState() {
     // initiate search on next frame (we need context)
-    Future.delayed(Duration.zero, () {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       final giphy = GiphyContext.of(context);
+      _debouncer = Debouncer(
+        delay: giphy.searchDelay,
+      );
       _search(giphy);
     });
     super.initState();
@@ -92,8 +96,8 @@ class _GiphySearchViewState extends State<GiphySearchView> {
 
   }
 
-  void _delayedSearch(GiphyContext giphy, String term) => Future.delayed(
-      Duration(milliseconds: 500), () => _search(giphy, term: term));
+  void _delayedSearch(GiphyContext giphy, String term) =>
+      _debouncer.call(() => _search(giphy, term: term));
 
   Future _search(GiphyContext giphy, {String term = ''}) async {
     // skip search if term does not match current search text
@@ -107,22 +111,31 @@ class _GiphySearchViewState extends State<GiphySearchView> {
           ? GiphyRepository.trending(
               apiKey: giphy.apiKey,
               rating: giphy.rating,
+              sticker: giphy.sticker,
+              previewType: giphy.previewType,
               onError: giphy.onError)
           : GiphyRepository.search(
               apiKey: giphy.apiKey,
               query: term,
               rating: giphy.rating,
               lang: giphy.language,
-              onError: giphy.onError));
+              sticker: giphy.sticker,
+              previewType: giphy.previewType,
+              onError: giphy.onError,
+            ));
 
       // scroll up
       if (_scrollController.hasClients) {
         _scrollController.jumpTo(0);
       }
-      _repoController.add(repo);
+      if (mounted) {
+        _repoController.add(repo);
+      }
     } catch (error) {
-      _repoController.addError(error);
-      giphy.onError(error);
+      if (mounted) {
+        _repoController.addError(error);
+      }
+      giphy.onError?.call(error);
     }
   }
 

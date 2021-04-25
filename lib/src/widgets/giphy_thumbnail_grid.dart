@@ -40,7 +40,7 @@ class GiphyThumbnailGrid extends StatelessWidget {
                   ),
                 );
               } else {
-                giphy.onSelected(gif);
+                giphy.onSelected?.call(gif);
               }
             }),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

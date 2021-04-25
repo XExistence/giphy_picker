@@ -1,3 +1,23 @@
+## 2.0.0 - 2021-03-04
+* Stable null safety
+
+## 2.0.0-nullsafety.0 - 2021-01-08
+* Migrates to null safety
+
+## 1.0.8 - 2020-10-11
+* Adds giphy preview type (by diegoveloper)
+* Improved preview image fallback selection (by diegoveloper)
+
+## 1.0.7 - 2020-10-06
+* Adds GiphyDecorator for improved picker customization (by diegoveloper)
+
+## 1.0.6 - 2020-09-09
+* Removes obsolete giphy api key from documentation
+
+## 1.0.5 - 2020-09-09
+* Adds Giphy sticker support
+* Removes giphy_client dependency
+
 ## 1.0.4 - 2020-02-03
 * Default search text now GIPHY compliant
 * Removes unneeded assets
