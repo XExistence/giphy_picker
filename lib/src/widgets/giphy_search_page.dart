@@ -8,7 +8,7 @@ class GiphySearchPage extends StatelessWidget {
   final Brightness brightness;
   final Color backgroundColor;
 
-  const GiphySearchPage({this.title,this.color, this.brightness,this.backgroundColor});
+  const GiphySearchPage({ required this.title,required this.color, required this.brightness,required this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {

@@ -24,16 +24,16 @@ class GiphyPicker {
     String rating = GiphyRating.g,
     String lang = GiphyLanguage.english,
     bool sticker = false,
-    Widget? title,
+    required Widget title,
     ErrorListener? onError,
     bool showPreviewPage = true,
     GiphyDecorator? decorator,
     bool fullScreenDialog = true,
     String searchText = 'Search GIPHY',
     GiphyPreviewType? previewType,
-    Color color,
-    Color backgroundColor,
-    Brightness brightness
+    required Color color,
+    required Color backgroundColor,
+    required Brightness brightness
   }) async {
     GiphyGif? result;
     final _decorator = decorator ?? GiphyDecorator();
@@ -45,6 +45,9 @@ class GiphyPicker {
           previewType: previewType ?? GiphyPreviewType.previewGif,
           child: GiphySearchPage(
             title: title,
+            color: color,
+            backgroundColor: backgroundColor,
+            brightness: brightness,
           ),
           apiKey: apiKey,
           rating: rating,

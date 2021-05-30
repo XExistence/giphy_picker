@@ -6,11 +6,11 @@ import 'package:flutter/widgets.dart';
 class Logo extends StatefulWidget {
   double width;
   double height;
-  double padding = 20;
+  double padding;
   Color color;
   Brightness brightness;
 
-  Logo({this.width, this.height, this.padding,this.color,this.brightness});
+  Logo({required this.width, required this.height, required this.padding,required this.color,required this.brightness});
 
   @override
   _LogoState createState() => _LogoState();

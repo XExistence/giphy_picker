@@ -7,12 +7,12 @@ import 'package:giphy_picker/src/widgets/giphy_thumbnail.dart';
 /// A selectable grid view of gif thumbnails.
 class GiphyThumbnailGrid extends StatelessWidget {
   final GiphyRepository repo;
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
   final Color backgroundColor;
   final Brightness brightness;
 
   const GiphyThumbnailGrid(
-      {Key key, @required this.repo, this.scrollController,this.backgroundColor,this.brightness})
+      {Key? key, @required required this.repo, this.scrollController, required this.backgroundColor, required this.brightness})
       : super(key: key);
 
   @override
@@ -32,6 +32,7 @@ class GiphyThumbnailGrid extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) => GiphyPreviewPage(
+                      title: Text(""),
                       gif: gif,
                       onSelected: giphy.onSelected,
                       color: backgroundColor,

@@ -2,19 +2,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:giphy_client/giphy_client.dart';
 import 'package:giphy_picker/src/widgets/giphy_image.dart';
+
+import '../../giphy_picker.dart';
 
 /// Presents a Giphy preview image.
 class GiphyPreviewPage extends StatelessWidget {
   final GiphyGif gif;
-  final Widget title;
-  final ValueChanged<GiphyGif> onSelected;
+  final Widget? title;
+  final ValueChanged<GiphyGif>? onSelected;
   final Color color;
   final Brightness brightness;
 
   const GiphyPreviewPage(
-      {@required this.gif, @required this.onSelected, this.title,this.color,this.brightness});
+      {required this.gif, this.onSelected, this.title,required this.color,required this.brightness});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class GiphyPreviewPage extends StatelessWidget {
             width: 50,
             height: 50,
             child: RawMaterialButton(
-              onPressed: () => onSelected(gif),
+              onPressed: () => onSelected?.call(gif),
               elevation: 2.0,
               child: SvgPicture.asset("assets/svg/tick.svg",
                   color: brightness == Brightness.dark ? Colors.white : Colors.black ),

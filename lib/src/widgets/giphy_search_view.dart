@@ -16,7 +16,7 @@ class GiphySearchView extends StatefulWidget {
   Color backgroundColor;
   Brightness brightness;
 
-  GiphySearchView({this.color,this.brightness,this.backgroundColor});
+  GiphySearchView({ required this.color,required this.brightness,required this.backgroundColor});
 
   @override
   _GiphySearchViewState createState() => _GiphySearchViewState();
@@ -29,7 +29,8 @@ class _GiphySearchViewState extends State<GiphySearchView> {
   final _scrollController = ScrollController();
   final _repoController = StreamController<GiphyRepository>();
   var giphy;
-  FocusNode myFocusNode;
+  late Debouncer _debouncer;
+  late FocusNode myFocusNode;
 
   @override
   void initState() {
@@ -66,14 +67,14 @@ class _GiphySearchViewState extends State<GiphySearchView> {
                   builder: (BuildContext context,
                       AsyncSnapshot<GiphyRepository> snapshot) {
                     if (snapshot.hasData) {
-                      return snapshot.data.totalCount > 0
+                      return snapshot.data!.totalCount > 0
                           ? NotificationListener(
                         child: RefreshIndicator(
                             child: GiphyThumbnailGrid(
                               brightness: widget.brightness,
                                 backgroundColor: widget.backgroundColor,
                                 key: Key('${snapshot.data.hashCode}'),
-                                repo: snapshot.data,
+                                repo: snapshot.data!,
                                 scrollController: _scrollController),
                             onRefresh: () =>
                                 _search(giphy, term: _textController.text)),
@@ -139,7 +140,7 @@ class _GiphySearchViewState extends State<GiphySearchView> {
     }
   }
 
-  Widget buildBar(BuildContext context, Brightness brightness, Color color) {
+  AppBar buildBar(BuildContext context, Brightness brightness, Color color) {
 
     giphy = GiphyContext.of(context);
     return new AppBar(
