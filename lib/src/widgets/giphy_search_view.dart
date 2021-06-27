@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:giphy_picker/src/model/giphy_repository.dart';
 import 'package:giphy_picker/src/utils/debouncer.dart';
 import 'package:giphy_picker/src/widgets/giphy_context.dart';
 import 'package:giphy_picker/src/widgets/giphy_thumbnail_grid.dart';
 import 'package:giphy_picker/src/widgets/logo.dart';
+import 'package:giphy_picker/src/widgets/single_loading_indicator.dart';
 
 /// Provides the UI for searching Giphy gif images.
 class GiphySearchView extends StatefulWidget {
@@ -91,7 +93,9 @@ class _GiphySearchViewState extends State<GiphySearchView> {
                     } else if (snapshot.hasError) {
                       return Center(child: Text('An error occurred'));
                     }
-                    return Center(child: CircularProgressIndicator());
+                    return Center(child: SingleLoadingIndicator(
+                      padding: EdgeInsets.all(20),
+                    ));
                   }))
         ]), bottom: false));
 

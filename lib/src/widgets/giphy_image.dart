@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:giphy_picker/src/widgets/single_loading_indicator.dart';
 import 'package:http/http.dart';
 import 'package:giphy_picker/src/model/giphy_client.dart';
 import 'package:giphy_picker/src/widgets/giphy_overlay.dart';
@@ -88,6 +89,8 @@ class _GiphyImageState extends State<GiphyImage> {
           }
           return image;
         }
-        return widget.placeholder ?? Center(child: CircularProgressIndicator());
+        return widget.placeholder ?? Center(child: SingleLoadingIndicator(
+          padding: EdgeInsets.all(10),
+        ));
       });
 }

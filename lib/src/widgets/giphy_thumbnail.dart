@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:giphy_picker/src/model/giphy_repository.dart';
+import 'package:giphy_picker/src/widgets/single_loading_indicator.dart';
 
 /// Loads and renders a gif thumbnail image using a GiphyRepostory and an index.
 class GiphyThumbnail extends StatefulWidget {
@@ -37,7 +38,9 @@ class _GiphyThumbnailState extends State<GiphyThumbnail> {
       builder: (BuildContext context, AsyncSnapshot<Uint8List?> snapshot) {
         if (!snapshot.hasData) {
           return widget.placeholder ?? Container(
-            child: Center(child: CircularProgressIndicator(),),
+            child: Center(child: SingleLoadingIndicator(
+              padding: EdgeInsets.all(10),
+            ),),
           );
         }
         return Image.memory(snapshot.data!, fit: BoxFit.cover);
