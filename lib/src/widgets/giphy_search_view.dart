@@ -207,12 +207,9 @@ class _GiphySearchViewState extends State<GiphySearchView> {
             color: brightness == Brightness.dark ? Colors.white : Colors.black,
           )
               : Icon(
-            const IconData(
-              0xe900,
-              fontFamily: 'close',
-            ),
+            EvaIcons.close,
             color: brightness == Brightness.dark ? Colors.white : Colors.black,
-            size: 18,
+            size: 26,
           ),
           onPressed: () {
             _displayTextField();
