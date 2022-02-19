@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class SingleLoadingIndicator extends StatelessWidget {
 
   EdgeInsets padding ;
-  SingleLoadingIndicator({required this.padding });
+  Color color;
+  SingleLoadingIndicator({required this.padding,required this.color });
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class SingleLoadingIndicator extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(5),
                     child: LinearProgressIndicator(
+                      color: color,
                       backgroundColor: Colors.black12,
                     ),
                   ),

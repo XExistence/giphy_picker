@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: _gif == null
               ? Text('Pick a gif..')
-              : GiphyImage.original(gif: _gif!),
+              : GiphyImage.original(gif: _gif!,color: Colors.red,backgroundColor:Color.fromARGB(255, 23, 23, 23),),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // request your Giphy API key at https://developers.giphy.com/
           final gif = await GiphyPicker.pickGif(
             title: Text(""),
-            backgroundColor: Colors.black87,
+            backgroundColor: Color.fromARGB(255, 23, 23, 23),
             color:Colors.red,
             brightness:Brightness.dark,
             logo: Container(

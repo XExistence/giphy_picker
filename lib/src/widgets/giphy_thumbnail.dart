@@ -8,9 +8,11 @@ class GiphyThumbnail extends StatefulWidget {
   final GiphyRepository repo;
   final int index;
   final Widget? placeholder;
+  Color color;
+  Color backgroundColor;
 
-  const GiphyThumbnail(
-      {Key? key, required this.repo, required this.index, this.placeholder})
+  GiphyThumbnail(
+      {Key? key, required this.repo, required this.index, this.placeholder,required this.color,required this.backgroundColor})
       : super(key: key);
 
   @override
@@ -38,7 +40,9 @@ class _GiphyThumbnailState extends State<GiphyThumbnail> {
       builder: (BuildContext context, AsyncSnapshot<Uint8List?> snapshot) {
         if (!snapshot.hasData) {
           return widget.placeholder ?? Container(
+            color: widget.backgroundColor,
             child: Center(child: SingleLoadingIndicator(
+              color: widget.color,
               padding: EdgeInsets.all(10),
             ),),
           );

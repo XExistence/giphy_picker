@@ -13,6 +13,8 @@ class GiphyImage extends StatefulWidget {
   final double? height;
   final BoxFit? fit;
   final bool renderGiphyOverlay;
+  final Color backgroundColor;
+  final Color color;
 
   /// Loads an image from given url.
   const GiphyImage(
@@ -21,6 +23,8 @@ class GiphyImage extends StatefulWidget {
       this.placeholder,
       this.width,
       this.height,
+      required this.color,
+      required this.backgroundColor,
       this.fit,
       this.renderGiphyOverlay = true})
       : super(key: key);
@@ -32,6 +36,8 @@ class GiphyImage extends StatefulWidget {
       this.placeholder,
       this.width,
       this.height,
+      required this.color,
+      required this.backgroundColor,
       this.fit,
       this.renderGiphyOverlay = true})
       : url = gif.images.original?.url,
@@ -44,6 +50,8 @@ class GiphyImage extends StatefulWidget {
       this.placeholder,
       this.width,
       this.height,
+      required this.color,
+      required this.backgroundColor,
       this.fit,
       this.renderGiphyOverlay = true})
       : url = gif.images.originalStill?.url,
@@ -89,8 +97,11 @@ class _GiphyImageState extends State<GiphyImage> {
           }
           return image;
         }
-        return widget.placeholder ?? Center(child: SingleLoadingIndicator(
-          padding: EdgeInsets.all(10),
-        ));
+        return widget.placeholder ??
+            Center(
+                child: SingleLoadingIndicator(
+              color: widget.color,
+              padding: EdgeInsets.all(10),
+            ));
       });
 }

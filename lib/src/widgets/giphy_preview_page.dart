@@ -13,16 +13,18 @@ class GiphyPreviewPage extends StatelessWidget {
   final Widget? title;
   final ValueChanged<GiphyGif>? onSelected;
   final Color color;
+  final Color backgroundColor;
   final Brightness brightness;
 
   const GiphyPreviewPage(
-      {required this.gif, this.onSelected, this.title,required this.color,required this.brightness});
+      {required this.gif, this.onSelected, this.title,required this.color,required this.brightness,required this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
 
     return Scaffold(
+        backgroundColor: backgroundColor,
         appBar: AppBar(
             brightness: brightness,
             leading: !Platform.isIOS
@@ -46,7 +48,7 @@ class GiphyPreviewPage extends StatelessWidget {
                   ? Colors.white
                   : Colors.black,
             ),
-          backgroundColor: color,
+          backgroundColor: backgroundColor,
             title: title, actions: <Widget>[
           Container(
             width: 50,
@@ -65,6 +67,8 @@ class GiphyPreviewPage extends StatelessWidget {
         body: SafeArea(
             child: Center(
                 child: GiphyImage.original(
+                  backgroundColor: backgroundColor,
+                  color: color,
               gif: gif,
               width: media.orientation == Orientation.portrait
                   ? double.maxFinite

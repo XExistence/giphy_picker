@@ -10,9 +10,10 @@ class GiphyThumbnailGrid extends StatelessWidget {
   final ScrollController? scrollController;
   final Color backgroundColor;
   final Brightness brightness;
+  final Color color;
 
   const GiphyThumbnailGrid(
-      {Key? key, @required required this.repo, this.scrollController, required this.backgroundColor, required this.brightness})
+      {Key? key, @required required this.repo, this.scrollController, required this.backgroundColor, required this.brightness,required this.color})
       : super(key: key);
 
   @override
@@ -22,7 +23,7 @@ class GiphyThumbnailGrid extends StatelessWidget {
         controller: scrollController,
         itemCount: repo.totalCount,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
-            child: GiphyThumbnail(key: Key('$index'), repo: repo, index: index),
+            child: GiphyThumbnail(key: Key('$index'), repo: repo, index: index,color: color,backgroundColor: backgroundColor,),
             onTap: () async {
               // display preview page
               final giphy = GiphyContext.of(context);
@@ -35,7 +36,8 @@ class GiphyThumbnailGrid extends StatelessWidget {
                       title: Text(""),
                       gif: gif,
                       onSelected: giphy.onSelected,
-                      color: backgroundColor,
+                      backgroundColor: backgroundColor,
+                      color: color,
                       brightness: brightness,
                     ),
                   ),

@@ -63,6 +63,7 @@ class _GiphySearchViewState extends State<GiphySearchView> {
     giphy = GiphyContext.of(context);
 
     return Scaffold(
+      backgroundColor: widget.backgroundColor,
         appBar: buildBar(context,widget.brightness,widget.backgroundColor),
         body: SafeArea(child: Column(children: <Widget>[
           Expanded(
@@ -75,6 +76,7 @@ class _GiphySearchViewState extends State<GiphySearchView> {
                           ? NotificationListener(
                         child: RefreshIndicator(
                             child: GiphyThumbnailGrid(
+                              color: widget.color,
                               brightness: widget.brightness,
                                 backgroundColor: widget.backgroundColor,
                                 key: Key('${snapshot.data.hashCode}'),
@@ -96,6 +98,7 @@ class _GiphySearchViewState extends State<GiphySearchView> {
                       return Center(child: Text('An error occurred'));
                     }
                     return Center(child: SingleLoadingIndicator(
+                      color: widget.color,
                       padding: EdgeInsets.all(20),
                     ));
                   }))
