@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:giphy_picker/src/widgets/giphy_image.dart';
@@ -28,29 +29,22 @@ class GiphyPreviewPage extends StatelessWidget {
                 ? IconButton(
               onPressed: () => Navigator.pop(context, false),
               icon: Icon(
-                const IconData(
-                  0xe900,
-                  fontFamily: 'backarrow',
-                ),
-                size: 20.0,
+                EvaIcons.arrowBack,
+                size: 26.0,
               ),
               color: brightness == Brightness.dark
                   ? Colors.white
                   : Colors.black,
             )
-                : RotatedBox(
-              quarterTurns: 2,
-              child: InkWell(
-                borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                onTap: () => Navigator.pop(context, false),
-                child: Padding(
-                  padding: EdgeInsets.all(17),
-                  child: SvgPicture.asset(
-                    "assets/svg/next.svg",
-                    color: brightness == Brightness.dark ? Colors.white : Colors.black,
-                  ),
-                ),
+                : IconButton(
+              onPressed: () => Navigator.pop(context, false),
+              icon: Icon(
+                EvaIcons.arrowIosBackOutline,
+                size: 26.0,
               ),
+              color: brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
             ),
           backgroundColor: color,
             title: title, actions: <Widget>[
@@ -60,8 +54,9 @@ class GiphyPreviewPage extends StatelessWidget {
             child: RawMaterialButton(
               onPressed: () => onSelected?.call(gif),
               elevation: 2.0,
-              child: SvgPicture.asset("assets/svg/tick.svg",
-                  color: brightness == Brightness.dark ? Colors.white : Colors.black ),
+              child: Icon(
+                EvaIcons.checkmarkCircle2Outline
+              ),
               padding: EdgeInsets.all(15.0),
               shape: CircleBorder(),
             ),

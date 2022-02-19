@@ -43,8 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () async {
           // request your Giphy API key at https://developers.giphy.com/
           final gif = await GiphyPicker.pickGif(
+            title: Text(""),
+            backgroundColor: Colors.black87,
+            color:Colors.red,
+            brightness:Brightness.dark,
+            logo: Container(
+              width: 50,
+              height: 50,
+              color: Colors.red,
+            ),
             context: context,
-            apiKey: '[YOUR GIPHY APIKEY]',
+            apiKey: 'bkCj7RCElzVobtDwUyt5TFWo0WSeknuT',
             fullScreenDialog: false,
             previewType: GiphyPreviewType.previewWebp,
             decorator: GiphyDecorator(
@@ -58,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
-            ),
+            )
           );
 
           if (gif != null) {

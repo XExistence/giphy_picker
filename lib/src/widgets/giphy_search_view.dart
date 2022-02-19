@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,8 +18,9 @@ class GiphySearchView extends StatefulWidget {
   Color color;
   Color backgroundColor;
   Brightness brightness;
+  Widget logo;
 
-  GiphySearchView({ required this.color,required this.brightness,required this.backgroundColor});
+  GiphySearchView({ required this.color,required this.brightness,required this.backgroundColor,required this.logo });
 
   @override
   _GiphySearchViewState createState() => _GiphySearchViewState();
@@ -154,29 +156,22 @@ class _GiphySearchViewState extends State<GiphySearchView> {
           ? IconButton(
         onPressed: () => Navigator.pop(context, false),
         icon: Icon(
-          const IconData(
-            0xe900,
-            fontFamily: 'backarrow',
-          ),
-          size: 20.0,
+          EvaIcons.arrowBack,
+          size: 26.0,
         ),
         color: brightness == Brightness.dark
             ? Colors.white
             : Colors.black,
       )
-          : RotatedBox(
-        quarterTurns: 2,
-        child: InkWell(
-          borderRadius: BorderRadius.all(Radius.circular(50.0)),
-          onTap: () => Navigator.pop(context, false),
-          child: Padding(
-            padding: EdgeInsets.all(17),
-            child: SvgPicture.asset(
-              "assets/svg/next.svg",
-              color: brightness == Brightness.dark ? Colors.white : Colors.black,
-            ),
-          ),
+          : IconButton(
+        onPressed: () => Navigator.pop(context, false),
+        icon: Icon(
+          EvaIcons.arrowIosBackOutline,
+          size: 26.0,
         ),
+        color: brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
       ),
       centerTitle: true,
       title: isSearchIcon
@@ -184,7 +179,11 @@ class _GiphySearchViewState extends State<GiphySearchView> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Logo(width: 40,height: 40,padding: 0,color: widget.color,brightness: widget.brightness,)
+          SizedBox(
+            width: 40,
+            height: 40,
+            child: widget.logo,
+          )
         ],
       )
           : TextField(
@@ -200,8 +199,8 @@ class _GiphySearchViewState extends State<GiphySearchView> {
         new IconButton(
           icon: isSearchIcon
               ? Icon(
-            const IconData(0xe900, fontFamily: 'internationalsvg'),
-            size: 20,
+            EvaIcons.searchOutline,
+            size: 25,
             color: brightness == Brightness.dark ? Colors.white : Colors.black,
           )
               : Icon(

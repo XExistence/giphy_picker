@@ -21,6 +21,7 @@ class GiphyPicker {
   static Future<GiphyGif?> pickGif({
     required BuildContext context,
     required String apiKey,
+    required Widget logo,
     String rating = GiphyRating.g,
     String lang = GiphyLanguage.english,
     bool sticker = false,
@@ -44,6 +45,7 @@ class GiphyPicker {
           decorator: _decorator,
           previewType: previewType ?? GiphyPreviewType.previewGif,
           child: GiphySearchPage(
+            logo: logo,
             title: title,
             color: color,
             backgroundColor: backgroundColor,

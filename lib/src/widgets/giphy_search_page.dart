@@ -7,8 +7,9 @@ class GiphySearchPage extends StatelessWidget {
   final Color color;
   final Brightness brightness;
   final Color backgroundColor;
+  Widget logo;
 
-  const GiphySearchPage({ required this.title,required this.color, required this.brightness,required this.backgroundColor});
+  GiphySearchPage({ required this.title,required this.color, required this.brightness,required this.backgroundColor, required this.logo});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class GiphySearchPage extends StatelessWidget {
         child: Scaffold(
           //appBar: giphyDecorator.showAppBar ? AppBar(title: title) : null,
           body: SafeArea(
-            child: GiphySearchView(color: this.color,backgroundColor: this.backgroundColor,brightness: this.brightness,),
+            child: GiphySearchView(color: this.color,backgroundColor: this.backgroundColor,brightness: this.brightness,logo: logo,),
             bottom: false,
           ),
         ),
