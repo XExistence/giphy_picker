@@ -156,7 +156,6 @@ class _GiphySearchViewState extends State<GiphySearchView> {
   AppBar buildBar(BuildContext context, Brightness brightness, Color color) {
     giphy = GiphyContext.of(context);
     return new AppBar(
-      brightness: brightness,
       backgroundColor: widget.backgroundColor,
       leading: !Platform.isIOS
           ? IconButton(

@@ -26,7 +26,7 @@ class GiphyPreviewPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: backgroundColor,
         appBar: AppBar(
-            brightness: brightness,
+
             leading: !Platform.isIOS
                 ? IconButton(
               onPressed: () => Navigator.pop(context, false),
