@@ -1,6 +1,6 @@
 name: giphy_picker
 description: A plugin that allows you to pick animated GIF images from Giphy.
-version: 2.0.0
+version: 2.0.1
 homepage: https://github.com/firstfloorsoftware/giphy_picker
 
 environment:

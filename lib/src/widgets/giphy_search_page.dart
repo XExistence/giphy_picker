@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:giphy_picker/src/widgets/giphy_search_view.dart';
+
 import 'giphy_context.dart';
 
 class GiphySearchPage extends StatelessWidget {
@@ -9,7 +11,12 @@ class GiphySearchPage extends StatelessWidget {
   final Color backgroundColor;
   Widget logo;
 
-  GiphySearchPage({ required this.title,required this.color, required this.brightness,required this.backgroundColor, required this.logo});
+  GiphySearchPage(
+      {required this.title,
+      required this.color,
+      required this.brightness,
+      required this.backgroundColor,
+      required this.logo});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +24,21 @@ class GiphySearchPage extends StatelessWidget {
       final giphyDecorator = GiphyContext.of(context).decorator;
       return Theme(
         data: giphyDecorator.giphyTheme ?? Theme.of(context),
-        child: Scaffold(
-          //appBar: giphyDecorator.showAppBar ? AppBar(title: title) : null,
-          body: SafeArea(
-            child: GiphySearchView(color: this.color,backgroundColor: this.backgroundColor,brightness: this.brightness,logo: logo,),
-            bottom: false,
+        child: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle(
+            statusBarColor: this.backgroundColor,
+            statusBarIconBrightness: this.brightness,
+          ),
+          child: Scaffold(
+            body: SafeArea(
+              child: GiphySearchView(
+                color: this.color,
+                backgroundColor: this.backgroundColor,
+                brightness: this.brightness,
+                logo: logo,
+              ),
+              bottom: false,
+            ),
           ),
         ),
       );
