@@ -30,6 +30,12 @@ class GiphySearchPage extends StatelessWidget {
             statusBarIconBrightness: this.brightness,
           ),
           child: Scaffold(
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(0),
+              child: AppBar(
+                backgroundColor: this.backgroundColor,
+              ),
+            ),
             body: SafeArea(
               child: GiphySearchView(
                 color: this.color,
