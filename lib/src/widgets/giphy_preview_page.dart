@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:giphy_picker/src/widgets/giphy_image.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 
 import '../../giphy_picker.dart';
 
@@ -27,26 +26,32 @@ class GiphyPreviewPage extends StatelessWidget {
         backgroundColor: backgroundColor,
         appBar: AppBar(
 
-            leading: !Platform.isIOS
+            leading: kIsWeb
                 ? IconButton(
               onPressed: () => Navigator.pop(context, false),
               icon: Icon(
-                EvaIcons.arrowBack,
+                LucideIcons.arrow_left,
                 size: 26.0,
               ),
-              color: brightness == Brightness.dark
-                  ? Colors.white
-                  : Colors.black,
+              color: brightness == Brightness.dark ? Colors.white : Colors.black,
+            )
+                : (Platform.isIOS
+                ? IconButton(
+              onPressed: () => Navigator.pop(context, false),
+              icon: Icon(
+                LucideIcons.chevron_left,
+                size: 26.0,
+              ),
+              color: brightness == Brightness.dark ? Colors.white : Colors.black,
             )
                 : IconButton(
               onPressed: () => Navigator.pop(context, false),
               icon: Icon(
-                EvaIcons.arrowIosBackOutline,
+                LucideIcons.arrow_left,
                 size: 26.0,
               ),
-              color: brightness == Brightness.dark
-                  ? Colors.white
-                  : Colors.black,
+              color: brightness == Brightness.dark ? Colors.white : Colors.black,
+            )
             ),
           backgroundColor: backgroundColor,
             title: title, actions: <Widget>[
@@ -57,7 +62,8 @@ class GiphyPreviewPage extends StatelessWidget {
               onPressed: () => onSelected?.call(gif),
               elevation: 2.0,
               child: Icon(
-                EvaIcons.checkmarkCircle2Outline
+                LucideIcons.circle_check,
+                color: brightness == Brightness.dark ? Colors.white : Colors.black,
               ),
               padding: EdgeInsets.all(15.0),
               shape: CircleBorder(),

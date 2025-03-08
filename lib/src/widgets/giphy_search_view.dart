@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:giphy_picker/src/model/giphy_repository.dart';
 import 'package:giphy_picker/src/utils/debouncer.dart';
 import 'package:giphy_picker/src/widgets/giphy_context.dart';
@@ -162,7 +161,7 @@ class _GiphySearchViewState extends State<GiphySearchView> {
           ? IconButton(
         onPressed: () => Navigator.pop(context, false),
         icon: Icon(
-          EvaIcons.arrowBack,
+          LucideIcons.arrow_left,
           size: 26.0,
         ),
         color: brightness == Brightness.dark ? Colors.white : Colors.black,
@@ -171,7 +170,7 @@ class _GiphySearchViewState extends State<GiphySearchView> {
           ? IconButton(
         onPressed: () => Navigator.pop(context, false),
         icon: Icon(
-          EvaIcons.arrowIosBackOutline,
+          LucideIcons.chevron_left,
           size: 26.0,
         ),
         color: brightness == Brightness.dark ? Colors.white : Colors.black,
@@ -179,7 +178,7 @@ class _GiphySearchViewState extends State<GiphySearchView> {
           : IconButton(
         onPressed: () => Navigator.pop(context, false),
         icon: Icon(
-          EvaIcons.arrowBack,
+          LucideIcons.arrow_left,
           size: 26.0,
         ),
         color: brightness == Brightness.dark ? Colors.white : Colors.black,
@@ -211,14 +210,14 @@ class _GiphySearchViewState extends State<GiphySearchView> {
         new IconButton(
           icon: isSearchIcon
               ? Icon(
-                  EvaIcons.searchOutline,
+              LucideIcons.search,
                   size: 25,
                   color: brightness == Brightness.dark
                       ? Colors.white
                       : Colors.black,
                 )
               : Icon(
-                  EvaIcons.close,
+            LucideIcons.x,
                   color: brightness == Brightness.dark
                       ? Colors.white
                       : Colors.black,
