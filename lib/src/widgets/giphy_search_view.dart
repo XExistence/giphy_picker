@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:giphy_picker/src/model/giphy_repository.dart';
@@ -157,25 +158,33 @@ class _GiphySearchViewState extends State<GiphySearchView> {
     giphy = GiphyContext.of(context);
     return new AppBar(
       backgroundColor: widget.backgroundColor,
-      leading: !Platform.isIOS
+      leading: kIsWeb
           ? IconButton(
-              onPressed: () => Navigator.pop(context, false),
-              icon: Icon(
-                EvaIcons.arrowBack,
-                size: 26.0,
-              ),
-              color:
-                  brightness == Brightness.dark ? Colors.white : Colors.black,
-            )
+        onPressed: () => Navigator.pop(context, false),
+        icon: Icon(
+          EvaIcons.arrowBack,
+          size: 26.0,
+        ),
+        color: brightness == Brightness.dark ? Colors.white : Colors.black,
+      )
+          : (Platform.isIOS
+          ? IconButton(
+        onPressed: () => Navigator.pop(context, false),
+        icon: Icon(
+          EvaIcons.arrowIosBackOutline,
+          size: 26.0,
+        ),
+        color: brightness == Brightness.dark ? Colors.white : Colors.black,
+      )
           : IconButton(
-              onPressed: () => Navigator.pop(context, false),
-              icon: Icon(
-                EvaIcons.arrowIosBackOutline,
-                size: 26.0,
-              ),
-              color:
-                  brightness == Brightness.dark ? Colors.white : Colors.black,
-            ),
+        onPressed: () => Navigator.pop(context, false),
+        icon: Icon(
+          EvaIcons.arrowBack,
+          size: 26.0,
+        ),
+        color: brightness == Brightness.dark ? Colors.white : Colors.black,
+      )
+      ),
       centerTitle: true,
       title: isSearchIcon
           ? Row(

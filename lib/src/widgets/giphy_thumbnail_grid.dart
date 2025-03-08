@@ -47,10 +47,19 @@ class GiphyThumbnailGrid extends StatelessWidget {
               }
             }),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount:
-                MediaQuery.of(context).orientation == Orientation.portrait
-                    ? 2
-                    : 3,
+            crossAxisCount: (() {
+              double width = MediaQuery.of(context).size.width;
+
+              if (width < 600) {
+                return 2; // Mobile screens
+              } else if (width < 900) {
+                return 3; // Medium-sized screens
+              } else if (width < 1200) {
+                return 4; // Large screens
+              } else {
+                return 5; // Extra large screens
+              }
+            })(),
             childAspectRatio: 1,
             crossAxisSpacing: 1,
             mainAxisSpacing: 1));
